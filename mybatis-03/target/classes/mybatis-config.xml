@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--核心配置文件-->
+<configuration>
+
+    <!--
+        配置文档的顶层结构是有顺序的，要按照顺序来写
+        properties,settings,typeAliases,typeHandlers,objectFactory,
+        objectWrapperFactory,reflectorFactory,plugins,environments,
+        databaseIdProvider,mappers
+    -->
+
+
+
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"></properties>
+
+
+    <!--
+        类型别名(typeAliases)：类型别名是为 Java 类型设置一个短的名字,
+        存在的意义仅在于用来减少类完全限定名的冗余。
+        两种方法（在实体类比较少的情况下建议使用第一种，实体类比较多的情况下用第二种）:
+            1.<typeAlias type="com.ldr.pojo.User" alias="User"/>
+            2.也可以指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean:
+                扫描到实体类的包， <package name="com.ldr.pojo"/>
+                他的默认别名就是这个类的类名，首字母小写。 user
+
+
+        若有注解，则别名为其注解值,见user实体类。@Alias("别名")
+
+    -->
+
+    <!--在核心文件中配置日子-->
+    <settings>
+        <!--标准的日志工厂实现-->
+        <!--
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        -->
+
+        <!--配置log4j日志的实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    
+    <typeAliases>
+        <typeAlias type="com.ldr.pojo.User" alias="User"/>
+        <!--
+            <package name="com.ldr.pojo"/>
+        -->
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+
+            </dataSource>
+        </environment>
+    </environments>
+
+
+
+    <!--每一个mapper.xml都需要在mybatis核心配置文件中注册-->
+    <mappers>
+        <mapper resource="com/ldr/dao/UserMapper.xml"/>
+    </mappers>
+</configuration>

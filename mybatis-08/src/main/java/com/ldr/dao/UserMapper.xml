@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ldr.dao.UserMapper">
+
+    <!--在当前mapper.xml中使用二级缓存-->
+    <!--读取数据优先级： 二级缓存 > 一级缓存 > 数据库-->
+    <cache/>
+
+    <select id="getUser" resultType="user">
+        select * from mybatis.user
+    </select>
+
+    <select id="getCache" resultType="user" useCache="true">
+        select * from mybatis.user where id = #{id}
+    </select>
+
+</mapper>
