@@ -27,10 +27,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mybatis-01" target="1.5" />
-      <module name="mybatis-02" target="1.5" />
-      <module name="mybatis-03" target="1.5" />
-      <module name="mybatis-04" target="1.5" />
       <module name="mybatis-09" target="1.5" />
       <module name="mybatis-10" target="1.5" />
       <module name="mybatis-11" target="1.5" />
